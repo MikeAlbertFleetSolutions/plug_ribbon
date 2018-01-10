@@ -76,5 +76,5 @@ $ docker build --pull --tag plug_ribbon -f Dockerfile .
 #### To create docker container from image during development:
 
 ```bash
-$ docker run -it --rm -v c:/Users/brian.bathe/Documents/workspace/plug_ribbon:/app -w /app plug_ribbon
+$ docker run -it --rm -v ${WORKSPACE}/plug_ribbon:/app -w /app plug_ribbon
 ```
