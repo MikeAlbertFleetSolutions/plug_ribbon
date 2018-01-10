@@ -1,18 +1,10 @@
 # plug_ribbon
 
-[![Build Status](https://travis-ci.org/stnly/plug_ribbon.svg?branch=master)](https://travis-ci.org/stnly/plug_ribbon)
-[![Hex Version](https://img.shields.io/hexpm/v/plug_ribbon.svg)](https://hex.pm/packages/plug_ribbon)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
-This [Plug](https://github.com/elixir-lang/plug) module injects a ribbon to your web application in the configured environment.
+This [Plug](https://github.com/elixir-lang/plug) module injects a ribbon to your web application.
 
 Used to differentiate between environments.
 
-![](priv/static/screenshot.png)
-
-## Motivation
-
-Inspired by [rack-dev-mark](https://github.com/dtaniwaki/rack-dev-mark)
+This was forked from [stnly/plug_ribbon](https://github.com/stnly/plug_ribbon), this version is safe to use in exrm & distillery releases.
 
 ## Setup
 
@@ -21,7 +13,7 @@ To use plug_ribbon in your projects, edit your `mix.exs` file and add plug_ribbo
 ```elixir
 defp deps do
   [
-    {:plug_ribbon, "~> 0.2.0"}
+    {:plug_ribbon, github: "MikeAlbertFleetSolutions/plug_ribbon"}
   ]
 end
 ```
@@ -30,7 +22,7 @@ end
 
 This plug should be one of the last ones in your pipeline.
 
-Add the plug and specify a list of environment atoms that you want the ribbon to be shown.
+Add the plug for the specific environments that you want the ribbon to be shown, include the text to be shown.
 
 ```elixir
 defmodule MyPhoenixApp.Router do
@@ -41,7 +33,9 @@ defmodule MyPhoenixApp.Router do
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
-    plug Plug.Ribbon, [:dev, :staging, :test]
+    unless Mix.env == :prod do
+      plug Plug.Ribbon, "Not Prod"
+    end
   end
 
   pipeline :api do
@@ -63,8 +57,7 @@ end
 
 After you are done, run `mix deps.get` in your shell to fetch the dependencies.
 
-The ribbon will display a label with your current environment in capital letters.
-`Mix.env |> Atom.to_string |> String.upcase`
+The ribbon will display the specified label.
 
 ## Testing
 
@@ -72,7 +65,16 @@ The ribbon will display a label with your current environment in capital letters
 $ mix test
 ```
 
-## License
+## Build notes:
 
-See the [LICENSE](LICENSE) file for more information.
+#### To create docker image:
 
+```bash
+$ docker build --pull --tag plug_ribbon -f Dockerfile .
+```
+
+#### To create docker container from image during development:
+
+```bash
+$ docker run -it --rm -v c:/Users/brian.bathe/Documents/workspace/plug_ribbon:/app -w /app plug_ribbon
+```

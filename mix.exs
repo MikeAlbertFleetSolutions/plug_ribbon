@@ -6,19 +6,18 @@ defmodule PlugRibbon.Mixfile do
   def project do
     [app: :plug_ribbon,
      version: @version,
-     elixir: "~> 1.0",
+     elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
-     package: package,
-     source_url: "https://github.com/stnly/plug_ribbon",
-     homepage_url: "https://git.io/plug_ribbon",
-     description: description]
+     deps: deps(),
+     package: package(),
+     source_url: "https://github.com/MikeAlbertFleetSolutions/plug_ribbon",
+     description: description()]
   end
 
   defp description do
   """
-  Injects a ribbon to your web application depending on the environment
+  Injects a ribbon to your web application
   """
   end
 
@@ -43,9 +42,9 @@ defmodule PlugRibbon.Mixfile do
   end
 
   defp package do
-    [contributors: ["Stanley Tan"],
+    [contributors: ["Stanley Tan, Brian Bathe"],
      licenses: ["MIT"],
-     links: %{GitHub: "https://git.io/plug_ribbon"},
+     links: %{GitHub: "https://github.com/MikeAlbertFleetSolutions/plug_ribbon"},
      files: ~w(lib priv test mix.exs) ++
             ~w(LICENSE README.md)]
   end
