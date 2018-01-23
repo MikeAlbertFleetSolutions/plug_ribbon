@@ -4,7 +4,7 @@ This [Plug](https://github.com/elixir-lang/plug) module injects a ribbon to your
 
 Used to differentiate between environments.
 
-This was forked from [stnly/plug_ribbon](https://github.com/stnly/plug_ribbon), this version is safe to use in exrm & distillery releases.
+Based on [stnly/plug_ribbon](https://github.com/stnly/plug_ribbon), this version is safe to use in exrm & distillery releases.
 
 ## Setup
 
