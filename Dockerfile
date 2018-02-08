@@ -6,7 +6,16 @@ RUN apt-get update \
     && apt-get -y upgrade
 
 # install basic packages
-RUN apt-get -y install vim wget git apt-transport-https inotify-tools
+RUN apt-get -y install \
+    vim \
+    wget \
+    curl \
+    apt-transport-https \
+    inotify-tools
+
+# niceties
+RUN echo "syntax off" > ~/.vimrc &&\
+    echo "alias ll='ls -alF'" >> ~/.bashrc
 
 # elixir requires UTF-8
 RUN apt-get -y install locales

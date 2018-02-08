@@ -62,7 +62,7 @@ The ribbon will display the specified label.
 ## Testing
 
 ```bash
-$ mix test
+mix test
 ```
 
 ## Build notes:
@@ -70,11 +70,17 @@ $ mix test
 #### To create docker image:
 
 ```bash
-$ docker build --pull --tag plug_ribbon -f Dockerfile .
+docker build --pull --tag plug_ribbon -f Dockerfile .
 ```
 
 #### To create docker container from image during development:
 
 ```bash
-$ docker run -it --rm -v ${WORKSPACE}/plug_ribbon:/app -w /app plug_ribbon
+docker run -it --rm -v ${WORKSPACE}/plug_ribbon:/app -w /app plug_ribbon
+```
+
+#### Before checking-in
+
+```bash
+mix format && mix credo && mix minify && mix test
 ```
